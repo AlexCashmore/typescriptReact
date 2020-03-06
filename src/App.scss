@@ -1,7 +1,9 @@
 
 $headerColor: #ffb489;
 $headerSize:24px;
-
+$alertColor:#ffb489;
+$formFieldWidth:180px;
+$primeWindowHeight:200px;
 
 
 .headerComponent {
@@ -9,3 +11,19 @@ $headerSize:24px;
   font-size: $headerSize;
   margin-left:128px;
 }
+.alertComponent{
+  background-color: $alertColor;
+  border-color: $alertColor;
+}
+.errorComponent{
+  background-color: $alertColor;
+}
+.numberInputComponent{
+  width:$formFieldWidth
+}
+.primeWindow{
+  overflow: scroll;
+  max-height:$primeWindowHeight;
+  min-height:128px;
+}
+

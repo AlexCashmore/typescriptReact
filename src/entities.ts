@@ -6,7 +6,7 @@ export function isPrime(numberToTest:number) {
     }
     for(let i=2; i<=Math.ceil(numberToTest/2); i++)
     {
-        if((numberToTest%i)==0) {return false;}
+        if((numberToTest%i)===0) {return false;}
     }
     return isPrime;
 }

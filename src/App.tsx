@@ -5,7 +5,7 @@ import './App.scss';
 class App extends React.Component {
     public render() {
         return (<div>
-                <span className="headerComponent">In your Prime?</span>
+                <span className="headerComponent">A Prime Example</span>
                 <Form />
             </div>
         );

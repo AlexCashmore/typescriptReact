@@ -7,14 +7,14 @@ export interface FormErrors {
 
 export interface IFormState {
     /*the form values*/
-    firstValue:any;
-    secondValue:any;
+    firstValue:string;
+    secondValue:string;
     /* used to display the type of error the validation input is returning*/
     errors: FormErrors;
 
     /* whether or not the user has clicked submit or not, used for rendering display text*/
     submitted?: boolean;
-    answerArray:any;
+    answerArray:Array<any>;
 }
 interface IFormProps {
 
@@ -27,9 +27,9 @@ export class Form extends React.Component<IFormProps, IFormState> {
     constructor(props: IFormProps) {
         super(props);
         const errors: FormErrors = {};
-        const firstValue=null;
-        const secondValue=null;
-        const answerArray:any=[];
+        const firstValue='';
+        const secondValue='';
+        const answerArray:Array<any>=[];
         const submitted:boolean=false;
         this.state = {
             firstValue,
@@ -40,13 +40,13 @@ export class Form extends React.Component<IFormProps, IFormState> {
         };
     }
 
-    private setFirstValue=(value:any)=>{
+    private setFirstValue=(value:string)=>{
         if(!value||parseInt(value)<9999||parseInt(value)>0) {
 
             this.setState({firstValue: value, submitted: false, errors: {}})
         }
     };
-    private setSecondValue=(value:any)=>{
+    private setSecondValue=(value:string)=>{
         if(!value||parseInt(value)<9999||parseInt(value)>0) {
             this.setState({secondValue: value, submitted: false, errors: {}})
         }
@@ -81,7 +81,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
             return false
         }
     }
-    private renderAlertComponent(firstValue:number,secondValue:number,submitted:any,answerArray:Array<any>,errors:any){
+    private renderAlertComponent(firstValue:string,secondValue:string,submitted:boolean|undefined,answerArray:Array<any>,errors:any){
             if(errors.range){
                 return <div className="alert alert-danger errorComponent" role="alert">
                     {errors.range}

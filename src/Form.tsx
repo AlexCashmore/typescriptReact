@@ -1,5 +1,6 @@
 import * as React from "react";
 import {calculatePrimes} from "./entities";
+import ChartWrapper from "./ChartWrapper";
 
 export interface FormErrors {
     [key: string]: string;
@@ -15,6 +16,8 @@ export interface IFormState {
     /* whether or not the user has clicked submit or not, used for rendering display text*/
     submitted?: boolean;
     answerArray:Array<any>;
+    primesCountInRange:Array<any>;
+    primesRangeArray:Array<any>;
 }
 interface IFormProps {
 
@@ -30,12 +33,16 @@ export class Form extends React.Component<IFormProps, IFormState> {
         const firstValue='';
         const secondValue='';
         const answerArray:Array<any>=[];
+        const primesCountInRange:Array<any>=[];
+        const primesRangeArray:Array<any>=[];
         const submitted:boolean=false;
         this.state = {
             firstValue,
             secondValue,
             errors,
             answerArray,
+            primesCountInRange,
+            primesRangeArray,
             submitted,
         };
     }
@@ -60,7 +67,9 @@ export class Form extends React.Component<IFormProps, IFormState> {
         const secondValue=parseInt(this.state.secondValue);
         if (this.validateForm(firstValue,secondValue)) {
             const primes = calculatePrimes(firstValue, secondValue);
-            this.setState({answerArray: primes,errors:{},submitted:true});
+            const {primesMatrix,primesRange}=this.generatePrimeCountsInRange(firstValue,secondValue,primes);
+            this.forceUpdate()
+            this.setState({answerArray: primes,errors:{},submitted:true,primesCountInRange:primesMatrix,primesRangeArray:primesRange});
         }
 
     };
@@ -110,7 +119,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
         }
         else if(submitted&&answerArray.length>=1){
             return <div className="alert alert-info alertComponent" role="alert">
-                The prime numbers between {firstValue} and {secondValue} are:
+                The {this.state.answerArray.length} prime numbers between {firstValue} and {secondValue} are:
 
                 <div className="primeWindow">{this.state.answerArray.map((i:number)=>{return <div key={i}>{i} <br /></div>})}</div>
             </div>
@@ -121,9 +130,43 @@ export class Form extends React.Component<IFormProps, IFormState> {
             </div>
         }
     }
+    generatePrimeCountsInRange(firstValue:any,secondValue:any,answerArray:any){
+            const primesMatrix = [];
+            const primesRange = [];
+            if(parseInt(secondValue)-parseInt(firstValue)<=500) {
+                for (let i = 0; i <= secondValue; i++) {
+                    const primes = calculatePrimes(parseInt(firstValue), i);
+                    if (i >= firstValue) {
+                        primesMatrix.push({x: i, y: primes.length});
+                        primesRange.push(i)
+                    }
+                }
+            }
+            return {primesMatrix, primesRange};
+
+        }
 
     public render() {
-        const { submitted, errors,firstValue,secondValue,answerArray } = this.state;
+        const { submitted, errors,firstValue,secondValue,answerArray,primesCountInRange,primesRangeArray } = this.state;
+        const color ='#ffb489';
+        const chartData=primesCountInRange.length>1?primesCountInRange:[];
+        const chartLabels=primesRangeArray;
+
+        const chartConfig = {
+            labels:chartLabels,
+            datasets: [{
+                label: 'Primes',
+                backgroundColor: color,
+                borderColor: color,
+                borderWidth: 1,
+                hoverBackgroundColor: color,
+                hoverBorderColor: color,
+                fill: false,
+                showLine: true,
+                hidden: false,
+                data: chartData,
+            }],
+        };
 
         /*bootstrap css classes overridden with SASS */
         return (
@@ -168,6 +211,54 @@ export class Form extends React.Component<IFormProps, IFormState> {
                     {this.renderAlertComponent(firstValue,secondValue,submitted,answerArray,errors)}
 
                 </div>
+                <span className="headerComponent">Prime Number Visualizer</span>
+                <div className="chartContainer"> <ChartWrapper
+                    type="line"
+                    data={chartConfig}
+                    options={{
+                        animationTime: 0,
+                        hoverMode: "index",
+                        stacked: false,
+                        legend: {
+                            display: true,
+                            position: "bottom",
+                        },
+                        scales: {
+
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: `Range`,
+                                },
+                                display:true,
+                                ticks: {
+                                    display:true,
+                                    stepSize: 1,
+                                    suggestedMin: this.state.firstValue||0,
+                                    suggestedMax: this.state.secondValue||20,
+                                },
+                            }],
+                            yAxes:[{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: `Prime occurance distribution`,
+                                },
+                            }]
+                        },
+                        tooltips: {
+                            mode: "nearest",
+                            intersect: true,
+                            enabled: true,
+                            callbacks: {
+                                label(tooltipItems:any, data:any) {
+                                    // moment("30-Jun-2016", "DD-MMM-YYYY").format("DD-MM-YYYY") <- Firefox
+                                    return `${tooltipItems.yLabel} ${data.datasets[tooltipItems.datasetIndex].label} occuring in between ${data.labels[0]} and ${tooltipItems.xLabel}, `;
+                                },
+                            },
+                        },
+                    }
+                    }
+                /></div>
             </form>
         );
     }

@@ -12,28 +12,79 @@ class App extends React.Component {
                 <Row className="no-padding">
                     <div style={{width:'33.3%'}} className="no-padding">
                         <CardPanel className="no-padding">
-                            <h3 style={{padding:24}}>My Clients</h3>
+                            <div style={{padding:24,height:90,fontWeight:600}}><div style={{fontSize:24, float:'left'}}>My Clients</div>
+                                <div style={{float:'left',paddingLeft:150,color:'#4264ea'}}>By Activity
+                                    <span style={{marginLeft:60,marginTop:5}}><i className="material-icons">keyboard_arrow_down</i></span>
+                                    </div>
+                            </div>
                         </CardPanel>
                     </div>
                     <div style={{width:'66.6%'}} className="no-padding">
-                        <CardPanel style={{height:80}} className="no-padding">
+                        <CardPanel style={{height:90}} className="no-padding">
                             <span style={{padding:24,width:'50%',float:'left'}}>
                                 <h3 style={{paddingLeft:5}}>Something Signage</h3>
                             </span>
-                            <span style={{float:'right',padding:24,paddingRight:150}}><Button className="blue darken-2">Action</Button>
-                                <Button style={{marginLeft:5}} className="blue darken-2">Client Info</Button></span>
+
                         </CardPanel>
                     </div>
                 </Row>
                 <Row className="no-padding">
 
                     <div style={{width:'33.3%',backgroundColor:'#FAFAFA'}} className="no-padding">
-                        <CardPanel style={{height:600}} className="grey lighten-2 no-padding">
-                            Table
+                        <CardPanel style={{height:600}} className="no-padding">
+                            <table className="highlight">
+                                <thead style={{backgroundColor:'#eeeeee'}}>
+                                <tr style={{color:'#8e8e8e'}}>
+                                    <th style={{width:5}}></th>
+                                    <th>Client Name</th>
+                                    <th>Inbox</th>
+                                    <th>Apps</th>
+                                    <th>Data <br />Share</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr style={{border:'bottom 1px solid'}}>
+                                    <td style={{backgroundColor:'#13dfe0'}}>{' '}</td>
+                                    <td>Salted Herring LTD</td>
+                                    <td><div className="circleBase standard orange"><span className="circleText">1</span></div></td>
+                                    <td><div className="circleBase standard"><span className="circleText">3</span></div></td>
+                                    <td><div className="circleBase standard"></div></td>
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td>Sartoria Design</td>
+                                    <td><div className="circleBase standard orange"><span className="circleText">2</span></div></td>
+                                    <td><div className="circleBase standard"><span className="circleText">7</span></div></td>
+                                    <td><div className="circleBase standard"></div></td>
+
+                                </tr>
+                                <tr>
+                                    <td />
+                                    <td>Something Signage</td>
+                                    <td><div className="circleBase standard orange"><span className="circleText">6</span></div></td>
+                                    <td><div className="circleBase standard"><span className="circleText">5</span></div></td>
+                                    <td><div className="circleBase standard"></div></td>
+
+                                </tr>
+                                <tr>
+                                    <td/>
+                                    <td>Lightbulb Advertising</td>
+                                    <td><div className="circleBase standard orange"><span className="circleText">8</span></div></td>
+                                    <td><div className="circleBase standard"><span className="circleText">4</span></div></td>
+
+                                        <td><div className="circleBase standard"><span className="circleTextIcon">
+                                            <i style={{color:'#13dfe0',fontWeight:800}} className="material-icons">done</i>
+                                        </span></div></td>
+
+
+                                </tr>
+                                </tbody>
+                            </table>
                         </CardPanel>
                     </div>
-                    <div style={{width:'66.6%',backgroundColor:'#FDFDFD'}}>
-                        <CardPanel style={{height:600}} className="grey lighten-2 no-padding">...</CardPanel>
+                    <div style={{width:'66.6%',backgroundColor:'#eeeeee'}}>
+                        <CardPanel style={{height:600,backgroundColor:'#eeeeee'}} className="no-padding"></CardPanel>
                     </div>
 
                 </Row>

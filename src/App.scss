@@ -33,3 +33,35 @@ margin-bottom: 0px !important;}
 .no-padding{padding:0px!important;
 margin:0px !important;}
 
+.circleBase {
+  border-radius: 50%;
+}
+.standard {
+  width: 30px;
+  height: 30px;
+  background: #d3d3d3;
+  border: #d3d3d3;
+  color:#4264ea;
+  text-align: center;
+  position:relative;
+}
+.orange{
+  background: orange;
+  color:white;
+}
+
+.circleText{
+  font-weight:800;
+  position:absolute;
+  top:4px;
+  left:10.5px;
+
+}
+.circleTextIcon{
+
+  position:absolute;
+  top:4px;
+  left:3px;
+
+}
+

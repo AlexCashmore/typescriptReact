@@ -10,22 +10,32 @@ class App extends React.Component {
         return (<div>
                 <Header />
                 <Row className="no-padding">
-                    <Col s={4} className="no-padding">
+                    <div style={{width:'33.3%'}} className="no-padding">
                         <CardPanel className="no-padding">
                             <h3 style={{padding:24}}>My Clients</h3>
                         </CardPanel>
-                        {/*<BusinessNavigator />*/}
-                    </Col>
-                    <Col s={4} className="no-padding">
-                            <h3 style={{padding:24}}>Something Signage</h3>
-                    </Col>
+                    </div>
+                    <div style={{width:'66.6%'}} className="no-padding">
+                        <CardPanel style={{height:80}} className="no-padding">
+                            <span style={{padding:24,width:'50%',float:'left'}}>
+                                <h3 style={{paddingLeft:5}}>Something Signage</h3>
+                            </span>
+                            <span style={{float:'right',padding:24,paddingRight:150}}><Button className="blue darken-2">Action</Button>
+                                <Button style={{marginLeft:5}} className="blue darken-2">Client Info</Button></span>
+                        </CardPanel>
+                    </div>
+                </Row>
+                <Row className="no-padding">
 
-                            <Col s={4} className="no-padding">
-                                <div style={{padding:24}}><div style={{float:'left',marginLeft:150}}>
-                                    <Button>Action Station</Button></div>
-                                    <div style={{float:'right',marginRight:150}}>
-                                        <Button>Client info</Button></div></div>
-                            </Col>
+                    <div style={{width:'33.3%',backgroundColor:'#FAFAFA'}} className="no-padding">
+                        <CardPanel style={{height:600}} className="grey lighten-2 no-padding">
+                            Table
+                        </CardPanel>
+                    </div>
+                    <div style={{width:'66.6%',backgroundColor:'#FDFDFD'}}>
+                        <CardPanel style={{height:600}} className="grey lighten-2 no-padding">...</CardPanel>
+                    </div>
+
                 </Row>
             </div>
         );

@@ -22,7 +22,13 @@ class App extends React.Component {
                     <div style={{width:'66.6%'}} className="no-padding">
                         <CardPanel style={{height:90}} className="no-padding">
                             <span style={{padding:24,width:'50%',float:'left'}}>
-                                <h3 style={{paddingLeft:5}}>Something Signage</h3>
+                                <h3 style={{paddingLeft:5}}>Something Signages</h3>
+                            </span>
+                            <span style={{float:'right',width:'50%',marginTop:10}}>
+                                <div style={{marginTop:15,float:'left',marginLeft:50}} className="actionButton">Action Station</div>
+                                <div style={{marginTop:15,float:'right',marginRight:100}} className="disabledButton">Client info</div>
+
+
                             </span>
 
                         </CardPanel>

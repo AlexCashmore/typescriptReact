@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Navbar,Icon,NavItem,Row,Col,Button,CardPanel } from 'react-materialize';
+import {observer} from "mobx-react";
 
 export interface FormErrors {
     [key: string]: string;
@@ -24,7 +25,7 @@ interface IFormProps {
 
 
 
-export default class BusinessNavigator extends React.Component<IFormProps, IFormState> {
+class BusinessNavigator extends React.Component<IFormProps, IFormState> {
 
     constructor(props: IFormProps) {
         super(props);
@@ -44,7 +45,7 @@ export default class BusinessNavigator extends React.Component<IFormProps, IForm
     }
     private businessRenderer(store:any){
         return store.businessList.map((e:any, i:any) =>
-            <tr style={{border:'bottom 1px solid',cursor:'pointer'}} onClick={store.selectBusiness(e.id)}>
+            <tr style={{border:'bottom 1px solid',cursor:'pointer'}} onClick={()=>{store.selectBusiness(e.id)}}>
                 <td style={{backgroundColor:e.selected?'#13dfe0':'white'}}>{' '}</td>
                 <td>{e.name}</td>
                 <td><div className="circleBase standard orange"><span className="circleText">{e.inbox}</span></div></td>
@@ -85,3 +86,5 @@ export default class BusinessNavigator extends React.Component<IFormProps, IForm
         );
     }
 }
+const BusinessNavigatorObserver = observer(BusinessNavigator);
+export default BusinessNavigatorObserver

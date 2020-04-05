@@ -63,7 +63,10 @@ class Store {
 
     ];
     selectBusiness(id) {
+        console.log('id',id);
+        this.businessList.map((i)=>{i.selected=false});
         const selectedBusiness = this.businessList.find(x => x.id === id);
+        console.log(selectedBusiness);
         // @ts-ignore
         selectedBusiness.selected=true;
 

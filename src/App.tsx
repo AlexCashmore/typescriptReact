@@ -2,6 +2,7 @@ import * as React from "react";
 import  BusinessNavigator  from "./BusinessNavigator";
 import  NotificationManager  from "./NotificationManager";
 import  MessagingPanel  from "./MessagingPanel";
+import  BusinessHeader  from "./BusinessHeader";
 import { Header } from "./Header";
 import './App.scss';
 import 'materialize-css';
@@ -16,7 +17,7 @@ class App extends React.Component {
                 <Row className="no-padding">
                     <div style={{width:'33.3%'}} className="no-padding">
                         <CardPanel className="no-padding">
-                            <div style={{padding:24,height:90,fontWeight:600}}><div style={{fontSize:24, float:'left'}}>My Clients</div>
+                            <div style={{padding:24,height:90,fontWeight:300}}><div style={{fontSize:24, float:'left'}}>My Clients</div>
                                 <div style={{float:'left',paddingLeft:150,color:'#4264ea'}}>By Activity
                                     <span style={{marginLeft:60,marginTop:5}}><i className="material-icons">keyboard_arrow_down</i></span>
                                     </div>
@@ -24,18 +25,7 @@ class App extends React.Component {
                         </CardPanel>
                     </div>
                     <div style={{width:'66.6%'}} className="no-padding">
-                        <CardPanel style={{height:90}} className="no-padding">
-                            <span style={{padding:24,width:'50%',float:'left'}}>
-                                <h3 style={{paddingLeft:5,fontWeight:600}}>Something Signage Ltd</h3>
-                            </span>
-                            <span style={{float:'right',width:'50%',marginTop:10}}>
-                                <div style={{marginTop:15,float:'left',marginLeft:50}} className="actionButton">Action Station</div>
-                                <div style={{marginTop:15,float:'right',marginRight:100}} className="disabledButton">Client info</div>
-
-
-                            </span>
-
-                        </CardPanel>
+                        <BusinessHeader store={appStore} />
                     </div>
                 </Row>
                 <Row className="no-padding">
@@ -55,10 +45,10 @@ class App extends React.Component {
 }
 class Store {
     businessList = [
-        {id:0,name: "Salted Herring LTD", inbox: 1,apps:3,data_is_shared:true,selected:true},
+        {id:0,name: "Salted Herring LTD", inbox: 1,apps:2,data_is_shared:true,selected:true},
         {id:1,name: "Sartoria LTD", inbox: 7,apps:3,data_is_shared:true,selected:false},
-        {id:2,name: "Something Signage LTD", inbox: 2,apps:3,data_is_shared:true,selected:false},
-        {id:3,name: "Lightbulb Advertising ", inbox: 4,apps:3,data_is_shared:false,selected:false},
+        {id:2,name: "Something Signage LTD", inbox: 2,apps:1,data_is_shared:true,selected:false},
+        {id:3,name: "Lightbulb Advertising ", inbox: 4,apps:9,data_is_shared:false,selected:false},
 
 
     ];

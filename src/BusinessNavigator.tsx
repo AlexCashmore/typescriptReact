@@ -17,6 +17,8 @@ export interface IFormState {
     answerArray:Array<any>;
 }
 interface IFormProps {
+    store:any;
+
 
 }
 
@@ -30,6 +32,7 @@ export default class BusinessNavigator extends React.Component<IFormProps, IForm
         const firstValue='';
         const secondValue='';
         const answerArray:Array<any>=[];
+        const store:Array<any>=[];
         const submitted:boolean=false;
         this.state = {
             firstValue,
@@ -39,9 +42,23 @@ export default class BusinessNavigator extends React.Component<IFormProps, IForm
             submitted,
         };
     }
+    private businessRenderer(store:any){
+        return store.businessList.map((e:any, i:any) =>
+            <tr style={{border:'bottom 1px solid',cursor:'pointer'}} onClick={store.selectBusiness(e.id)}>
+                <td style={{backgroundColor:e.selected?'#13dfe0':'white'}}>{' '}</td>
+                <td>{e.name}</td>
+                <td><div className="circleBase standard orange"><span className="circleText">{e.inbox}</span></div></td>
+                <td><div className="circleBase standard"><span className="circleText">{e.apps}</span></div></td>
+                <td><div className="circleBase standard"><span className="circleTextIcon">
+                    {e.data_is_shared? <i style={{color:'#13dfe0',fontWeight:800}} className="material-icons">done</i>:null}
+                                        </span></div></td>
+            </tr>
+        )
+    }
 
     public render() {
         const { submitted, errors,firstValue,secondValue,answerArray } = this.state;
+        const {store}=this.props;
 
         return (
             <div style={{width:'33.3%',backgroundColor:'#FAFAFA'}} className="no-padding">
@@ -58,41 +75,7 @@ export default class BusinessNavigator extends React.Component<IFormProps, IForm
                         </thead>
 
                         <tbody>
-                        <tr style={{border:'bottom 1px solid'}}>
-                            <td style={{backgroundColor:'#13dfe0'}}>{' '}</td>
-                            <td>Salted Herring LTD</td>
-                            <td><div className="circleBase standard orange"><span className="circleText">1</span></div></td>
-                            <td><div className="circleBase standard"><span className="circleText">3</span></div></td>
-                            <td><div className="circleBase standard"></div></td>
-                        </tr>
-                        <tr>
-                            <td />
-                            <td>Sartoria Design</td>
-                            <td><div className="circleBase standard orange"><span className="circleText">2</span></div></td>
-                            <td><div className="circleBase standard"><span className="circleText">7</span></div></td>
-                            <td><div className="circleBase standard"></div></td>
-
-                        </tr>
-                        <tr>
-                            <td />
-                            <td>Something Signage</td>
-                            <td><div className="circleBase standard orange"><span className="circleText">6</span></div></td>
-                            <td><div className="circleBase standard"><span className="circleText">5</span></div></td>
-                            <td><div className="circleBase standard"></div></td>
-
-                        </tr>
-                        <tr>
-                            <td/>
-                            <td>Lightbulb Advertising</td>
-                            <td><div className="circleBase standard orange"><span className="circleText">8</span></div></td>
-                            <td><div className="circleBase standard"><span className="circleText">4</span></div></td>
-
-                            <td><div className="circleBase standard"><span className="circleTextIcon">
-                                            <i style={{color:'#13dfe0',fontWeight:800}} className="material-icons">done</i>
-                                        </span></div></td>
-
-
-                        </tr>
+                        {this.businessRenderer(store)}
                         </tbody>
                     </table>
                     <div style={{marginTop:60,float:'left',marginLeft:165}} className="actionButton">Add New Client</div>

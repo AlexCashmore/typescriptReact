@@ -17,6 +17,7 @@ export interface IFormState {
     answerArray:Array<any>;
 }
 interface IFormProps {
+    store:any,
 
 }
 

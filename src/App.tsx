@@ -6,6 +6,8 @@ import { Header } from "./Header";
 import './App.scss';
 import 'materialize-css';
 import { Navbar,Icon,NavItem,Row,Col,Button,CardPanel } from 'react-materialize';
+import {decorate, observable,action} from "mobx"
+import {observer} from "mobx-react"
 
 class App extends React.Component {
     public render() {
@@ -38,12 +40,12 @@ class App extends React.Component {
                 </Row>
                 <Row className="no-padding">
 
-                    <BusinessNavigator />
+                    <BusinessNavigator store={appStore} />
                     <div style={{width:'33.3%',backgroundColor:'#eeeeee'}}>
-                        <NotificationManager />
+                        <NotificationManager store={appStore} />
                     </div>
                     <div style={{width:'33.3%',backgroundColor:'#eeeeee'}}>
-                        <MessagingPanel />
+                        <MessagingPanel store={appStore} />
                     </div>
 
                 </Row>
@@ -51,5 +53,28 @@ class App extends React.Component {
         );
     }
 }
+class Store {
+    businessList = [
+        {id:0,name: "Salted Herring LTD", inbox: 1,apps:3,data_is_shared:true,selected:true},
+        {id:1,name: "Sartoria LTD", inbox: 7,apps:3,data_is_shared:true,selected:false},
+        {id:2,name: "Something Signage LTD", inbox: 2,apps:3,data_is_shared:true,selected:false},
+        {id:3,name: "Lightbulb Advertising ", inbox: 4,apps:3,data_is_shared:false,selected:false},
+
+
+    ];
+    selectBusiness(id) {
+        const selectedBusiness = this.businessList.find(x => x.id === id);
+        // @ts-ignore
+        selectedBusiness.selected=true;
+
+    }
+}
+decorate(Store, {
+    businessList: observable,
+    selectBusiness:action
+});
+
+const appStore = new Store();
+
 
 export default App;

@@ -2,7 +2,7 @@ import * as React from "react";
 import  BusinessNavigator  from "./BusinessNavigator";
 import  NotificationManager  from "./NotificationManager";
 import  MessagingPanel  from "./MessagingPanel";
-import BusinessHeader, {FormErrors, IFormState} from "./BusinessHeader";
+import BusinessHeader from "./BusinessHeader";
 import { Header } from "./Header";
 import './App.scss';
 import 'materialize-css';
@@ -12,7 +12,7 @@ import {observer} from "mobx-react"
 interface IFormProps {
     store:any;
 }
-class AdvisoryPortal extends React.Component<IFormProps, IFormState> {
+class AdvisoryPortal extends React.Component<IFormProps> {
 
 
     constructor(props: IFormProps) {
@@ -21,17 +21,13 @@ class AdvisoryPortal extends React.Component<IFormProps, IFormState> {
 
     }
     componentDidMount(): void {
-        /*console.log('some API request');
+        /*
+        //after some API request//
         const fakeData= [
-            {id:0,name: "Saasdasd", inbox: 1,apps:2,data_is_shared:true,selected:true},
-            {id:1,name: "SarsaddadsgTD", inbox: 7,apps:3,data_is_shared:true,selected:false},
-            {id:2,name: "Somdfgdfggnage LTD", inbox: 2,apps:1,data_is_shared:true,selected:false},
-            {id:3,name: "Lightdfging ", inbox: 4,apps:9,data_is_shared:false,selected:false},
-
-
         ];
         Object.assign(this.props.store.businessList, fakeData);
-        console.log(this.props.store.businessList,fakeData)*/
+        console.log(this.props.store.businessList,fakeData)
+        */
     }
 
     public render() {
